@@ -1,6 +1,6 @@
 // Jenkinsfile (ejemplo básico)
 pipeline {
-    agent any
+    agent {label 'laptop-ale-linux'} 
     
     stages {
         stage('Checkout') {
