@@ -50,5 +50,5 @@ jobs:
 
       - name: Deleting Token
         run: |
-            gh logout
+            gh auth logout
 
