@@ -33,6 +33,12 @@ jobs:
                 continue
               fi
 
+              DIFF=$(gh api "repos/${repo}/compare/staging...develop" --jq '.status' 2>/dev/null)
+              if [[ "$DIFF" != "ahead" ]]; then
+                echo "❌ No hay cambios en 'develop' respecto a 'staging'. Saltando..."
+                continue
+              fi
+
               echo "✅ Ramas verificadas. Creando PR..."
               gh pr create --repo "$repo" --base staging --head develop --title "Merge develop into staging" --body "Aprobado automáticamente con CI/CD"
 
